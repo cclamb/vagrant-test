@@ -65,6 +65,10 @@ Vagrant::Config.run do |config|
   #
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = "cookbooks"
+
+    chef.http_proxy = "http://wwwproxy.sandia.gov:80"
+
+    chef.add_recipe "apt"
     chef.add_recipe "git"
     chef.add_recipe "ruby"
     chef.add_recipe "ruby::symlinks"

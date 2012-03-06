@@ -30,7 +30,7 @@ Vagrant::Config.run do |config|
   # Forward a port from the guest to the host, which allows for outside
   # computers to access the VM, whereas host only networking does not.
   config.vm.forward_port 80, 8080
-  # config.vm.forward_port 3000, 8081
+  config.vm.forward_port 3000, 8081
 
   # Share an additional folder to the guest VM. The first argument is
   # an identifier, the second is the path on the guest to mount the
@@ -81,6 +81,7 @@ Vagrant::Config.run do |config|
     chef.add_recipe "rubygems"
     chef.add_recipe "sqlite"
     chef.add_recipe "mongodb"
+    chef.add_recipe "gems"
 
     # chef.add_recipe "mysql"
     # chef.add_role "web"
@@ -91,7 +92,12 @@ Vagrant::Config.run do |config|
         :ruby => {
           :default_version => "1.9.1"
         }
-      }
+      },
+      :proxy => {
+        :http => 'http://wwwproxy.sandia.gov:80',
+        :https => 'http://wwwproxy.sandia.gov:80'
+      },
+      :gems =>['rails', 'sinatra', 'rspec', 'cucumber']
     }
   end
 

@@ -72,6 +72,7 @@ Vagrant::Config.run do |config|
     chef.https_proxy = "wwwproxy.sandia.gov:80"
     chef.no_proxy = "*.sandia.gov, localhost"
 
+    chef.add_recipe "proxy"
     chef.add_recipe "apt"
     chef.add_recipe "git"
     chef.add_recipe "nginx"

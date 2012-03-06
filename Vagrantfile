@@ -29,7 +29,7 @@ Vagrant::Config.run do |config|
 
   # Forward a port from the guest to the host, which allows for outside
   # computers to access the VM, whereas host only networking does not.
-  # config.vm.forward_port 80, 8080
+  config.vm.forward_port 80, 8080
   # config.vm.forward_port 3000, 8081
 
   # Share an additional folder to the guest VM. The first argument is
@@ -64,19 +64,27 @@ Vagrant::Config.run do |config|
   # to this Vagrantfile), and adding some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
+    # chef.log_level = :debug
+
     chef.cookbooks_path = "cookbooks"
 
-    chef.http_proxy = "http://wwwproxy.sandia.gov:80"
+    chef.http_proxy = "wwwproxy.sandia.gov:80"
+    chef.https_proxy = "wwwproxy.sandia.gov:80"
+    chef.no_proxy = "*.sandia.gov, localhost"
 
     chef.add_recipe "apt"
     chef.add_recipe "git"
+    chef.add_recipe "nginx"
     chef.add_recipe "ruby"
     chef.add_recipe "ruby::symlinks"
+    chef.add_recipe "rubygems"
+    chef.add_recipe "sqlite"
+    chef.add_recipe "mongodb"
+
     # chef.add_recipe "mysql"
     # chef.add_role "web"
     
     # You may also specify custom JSON attributes:
-    # chef.json = { :mysql_password => "foo" }
     chef.json = {
       :languages => {
         :ruby => {

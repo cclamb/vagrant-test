@@ -97,7 +97,7 @@ Vagrant::Config.run do |config|
         :http => 'http://wwwproxy.sandia.gov:80',
         :https => 'http://wwwproxy.sandia.gov:80'
       },
-      :gems =>['rails', 'sinatra', 'rspec', 'cucumber']
+      :gems =>['rails', 'sinatra', 'rspec', 'cucumber', 'thin', 'eventmachine']
     }
   end
 

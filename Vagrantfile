@@ -72,7 +72,8 @@ Vagrant::Config.run do |config|
     chef.https_proxy = "wwwproxy.sandia.gov:80"
     chef.no_proxy = "*.sandia.gov, localhost"
 
-    ["proxy", "apt", "git", "nginx", "ruby", "ruby::symlinks", "rubygems", "sqlite", "mongodb", "gems"].each do |name|
+    #["proxy", 
+    ["apt", "git", "nginx", "ruby", "ruby::symlinks", "rubygems", "sqlite", "mongodb",  "gems"].each do |name|
       chef.add_recipe name
     end
     # chef.add_recipe "proxy"
@@ -97,8 +98,8 @@ Vagrant::Config.run do |config|
         }
       },
       :proxy => {
-        :http => 'http://wwwproxy.sandia.gov:80',
-        :https => 'http://wwwproxy.sandia.gov:80'
+      #  :http => 'http://wwwproxy.sandia.gov:80',
+      #  :https => 'http://wwwproxy.sandia.gov:80'
       },
       :gems =>['rails', 'sinatra', 'rspec', 'cucumber', 'thin', 'eventmachine']
     }

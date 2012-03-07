@@ -72,16 +72,19 @@ Vagrant::Config.run do |config|
     chef.https_proxy = "wwwproxy.sandia.gov:80"
     chef.no_proxy = "*.sandia.gov, localhost"
 
-    chef.add_recipe "proxy"
-    chef.add_recipe "apt"
-    chef.add_recipe "git"
-    chef.add_recipe "nginx"
-    chef.add_recipe "ruby"
-    chef.add_recipe "ruby::symlinks"
-    chef.add_recipe "rubygems"
-    chef.add_recipe "sqlite"
-    chef.add_recipe "mongodb"
-    chef.add_recipe "gems"
+    ["proxy", "apt", "git", "nginx", "ruby", "ruby::symlinks", "rubygems", "sqlite", "mongodb", "gems"].each do |name|
+      chef.add_recipe name
+    end
+    # chef.add_recipe "proxy"
+    # chef.add_recipe "apt"
+    # chef.add_recipe "git"
+    # chef.add_recipe "nginx"
+    # chef.add_recipe "ruby"
+    # chef.add_recipe "ruby::symlinks"
+    # chef.add_recipe "rubygems"
+    # chef.add_recipe "sqlite"
+    # chef.add_recipe "mongodb"
+    # chef.add_recipe "gems"
 
     # chef.add_recipe "mysql"
     # chef.add_role "web"

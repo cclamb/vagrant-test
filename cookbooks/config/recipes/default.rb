@@ -15,3 +15,13 @@ template '/etc/nginx/nginx.conf' do
   variables :server_name => 'vagrant-test', :application_root => '/vagrant/application'
   notifies :restart, "service[nginx]"
 end
+
+execute 'cd /vagrant/application; bundle install'
+
+service "thin" do
+  action[:enable,:start]
+end
+
+service "nginx" do
+  action[:enable,:start]
+end

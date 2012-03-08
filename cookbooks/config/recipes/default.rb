@@ -12,6 +12,6 @@ execute 'mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf-orig'
 
 template '/etc/nginx/nginx.conf' do
   source 'nginx.conf.erb'
-  variables :server_name => 'vagrant-test', :application_root => '/var/rails/mysapp/public'
+  variables :server_name => 'vagrant-test', :application_root => '/vagrant/application'
   notifies :restart, "service[nginx]"
 end

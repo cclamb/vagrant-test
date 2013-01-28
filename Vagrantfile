@@ -64,19 +64,20 @@ Vagrant::Config.run do |config|
   # to this Vagrantfile), and adding some recipes and/or roles.
   #
   
-  config.vm.provision :chef_solo do |chef|
+  #config.vm.provision :chef_solo do |chef|
     # chef.log_level = :debug
 
-    chef.cookbooks_path = "cookbooks"
+    # chef.cookbooks_path = "cookbooks"
 
-    chef.http_proxy = "wwwproxy.sandia.gov:80"
-    chef.https_proxy = "wwwproxy.sandia.gov:80"
-    chef.no_proxy = "*.sandia.gov, localhost"
+    # chef.http_proxy = "wwwproxy.sandia.gov:80"
+    # chef.https_proxy = "wwwproxy.sandia.gov:80"
+    # chef.no_proxy = "*.sandia.gov, localhost"
 
-    ["proxy", "apt", "git", "nginx", "ruby", "ruby::symlinks", 
-      "rubygems", "sqlite", "mongodb",  "gems", "config"].each do |name|
-      chef.add_recipe name
-    end
+    # #["proxy",
+    #   ["apt", "git", "nginx", "ruby", "ruby::symlinks", 
+    #   "rubygems", "sqlite", "mongodb",  "gems", "config"].each do |name|
+    #   chef.add_recipe name
+    # end
     
     # chef.add_recipe "proxy"
     # chef.add_recipe "apt"
@@ -93,19 +94,19 @@ Vagrant::Config.run do |config|
     # chef.add_role "web"
     
     # You may also specify custom JSON attributes:
-    chef.json = {
-      :languages => {
-        :ruby => {
-          :default_version => "1.9.1"
-        }
-      },
-      :proxy => {
-        :http => 'http://wwwproxy.sandia.gov:80',
-        :https => 'http://wwwproxy.sandia.gov:80'
-      },
-      :gems =>['rails', 'sinatra', 'rspec', 'cucumber', 'thin', 'eventmachine', 'bundler']
-    }
-  end
+    # chef.json = {
+    #   :languages => {
+    #     :ruby => {
+    #       :default_version => "1.9.1"
+    #     }
+    #   },
+    #   :proxy => {
+    #     #:http => 'http://wwwproxy.sandia.gov:80',
+    #     #:https => 'http://wwwproxy.sandia.gov:80'
+    #   },
+    #   :gems =>['rails', 'sinatra', 'rspec', 'cucumber', 'thin', 'eventmachine'] #, 'bundler']
+    # }
+  #end
 
   # Enable provisioning with chef server, specifying the chef server URL,
   # and the path to the validation key (relative to this Vagrantfile).
